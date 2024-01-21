@@ -1,5 +1,6 @@
 package com.example.sem3HomeTask.services;
 
+import com.example.sem3HomeTask.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,19 @@ public class RegistrationService {
     @Autowired
     private DataProcessingService dataProcessingService;
 
-    //Поля UserService, NotificationService
 
-    //Метод processRegistration
+    private NotificationService notificationService=new NotificationService();
+
+    private UserService userService=new UserService(notificationService);
+
+   public void processRegistration(String name, int age, String email){
+       processRegistration(userService.createUser(name,age,email));
+   }
+    public void processRegistration(User user){
+        dataProcessingService.addUserToList(user);
+          notificationService.notifyUser(user);
+    }
+
+
+
 }

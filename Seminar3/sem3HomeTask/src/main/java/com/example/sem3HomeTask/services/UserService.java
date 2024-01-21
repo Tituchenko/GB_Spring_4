@@ -22,8 +22,8 @@ public class UserService {
         user.setEmail(email);
 
         // Отправляем уведомление о создании нового пользователя
-        notificationService.notifyUser(user);
-
+//        notificationService.notifyUser(user);
+//
         return user;
     }
 }
